@@ -2,7 +2,7 @@
 
 Tài liệu này ghi lại toàn bộ quá trình build một Linux image bằng **Yocto Project** cho **Raspberry Pi 4**, dựa trên quy trình thực hành trong file Word gốc: tải source code, thêm BSP layer, khởi tạo môi trường build, cấu hình `local.conf`, build image, flash vào SD card và kết nối UART.
 
-> **Lưu ý:** Nội dung dưới đây giữ nguyên logic của tài liệu gốc, nhưng đã sửa các chỗ dễ gây nhầm như `raspberrypi3` → `raspberrypi4`, đường dẫn `meta-raspberrypi` sau khi vào thư mục `build`, và bổ sung cảnh báo khi dùng `dd`.
+
 
 ---
 
@@ -184,7 +184,6 @@ Vì vậy từ thư mục `build`, thêm layer bằng:
 bitbake-layers add-layer ../meta-raspberrypi
 ```
 
-> File Word gốc ghi `./meta-raspberrypi`, nhưng ảnh `bblayers.conf` cho thấy layer nằm ở `poky-rpi/meta-raspberrypi`. Khi terminal đang ở `poky-rpi/build`, đường dẫn đúng theo cấu trúc này là `../meta-raspberrypi`.
 
 Lệnh trên dùng chương trình `bitbake-layers`, thực hiện chức năng `add-layer` để đăng ký thư mục `meta-raspberrypi` vào:
 
@@ -770,21 +769,3 @@ root
 
 ---
 
-# IX. Notes / Corrections from the Original Document
-
-Các điểm đã được chỉnh để tài liệu nhất quán hơn:
-
-1. `raspberrypi3` trong phần mô tả build được sửa thành `raspberrypi4`, vì `MACHINE` và toàn bộ đường dẫn output đều đang dùng Raspberry Pi 4.
-2. `bitbake-layers add-layer ./meta-raspberrypi` được chỉnh thành:
-
-   ```bash
-   bitbake-layers add-layer ../meta-raspberrypi
-   ```
-
-   khi terminal đang ở `poky-rpi/build` và layer nằm ở `poky-rpi/meta-raspberrypi`.
-
-3. Bổ sung giải thích rõ rằng clone layer chưa có nghĩa Yocto đã sử dụng layer.
-4. Giữ bước giải nén `.wic.bz2` thành `.wic` trước khi dùng `dd`.
-5. Bổ sung cảnh báo kiểm tra đúng thiết bị SD card trước khi dùng `dd`.
-6. Bổ sung nhắc unmount tất cả partition của SD card nếu có nhiều hơn một partition.
-7. Giữ bước `sync` sau khi flash để đảm bảo dữ liệu đã được ghi xuống thiết bị lưu trữ.
