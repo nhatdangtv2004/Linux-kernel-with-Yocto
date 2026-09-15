@@ -1,9 +1,5 @@
 # Build Yocto Linux Image for Raspberry Pi 4
 
-Tài liệu này ghi lại toàn bộ quá trình build một Linux image bằng **Yocto Project** cho **Raspberry Pi 4**, dựa trên quy trình thực hành trong file Word gốc: tải source code, thêm BSP layer, khởi tạo môi trường build, cấu hình `local.conf`, build image, flash vào SD card và kết nối UART.
-
-
-
 ---
 
 # I. Download Source Code
